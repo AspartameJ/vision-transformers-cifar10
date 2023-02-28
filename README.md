@@ -11,7 +11,7 @@ docker镜像：
 
 数据集下载：
 `cd vision-transformers-cifar10`
-mkdir data && cd data
+`mkdir data && cd data`
 `wget http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz && tar xvf cifar-10-python.tar.gz && rm -rf cifar-10-python.tar.gz`
 
 容器启动命令参考：
