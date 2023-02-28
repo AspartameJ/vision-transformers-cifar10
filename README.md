@@ -15,26 +15,26 @@ docker镜像：
 `wget http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz && tar xvf cifar-10-python.tar.gz && rm -rf cifar-10-python.tar.gz`
 
 容器启动命令参考：
-`docker run -it -u root --name torch-0123 --ipc=host 
---device=/dev/davinci0 
---device=/dev/davinci1 
---device=/dev/davinci2 
---device=/dev/davinci3 
---device=/dev/davinci_manager 
---device=/dev/devmm_svm 
---device=/dev/hisi_hdc 
--v /usr/local/Ascend/driver:/usr/local/Ascend/driver 
--v /usr/local/Ascend/add-ons/:/usr/local/Ascend/add-ons/ 
--v /var/log/npu/conf/slog/slog.conf:/var/log/npu/conf/slog/slog.conf 
--v /var/log/npu/slog/:/var/log/npu/slog 
--v /var/log/npu/profiling/:/var/log/npu/profiling 
--v /var/log/npu/dump/:/var/log/npu/dump 
--v /var/log/npu/:/usr/slog 
--v /usr/local/sbin/npu-smi:/usr/local/sbin/npu-smi 
--v /etc/ascend_install.info:/etc/ascend_install.info 
--v /path/to/transformers-cifar10:/root/transformers-cifar10 
-ascendhub.huawei.com/public-ascendhub/pytorch-modelzoo:22.0.RC3-1.8.1 
-/bin/bash`
+`docker run -it -u root --name torch-0123 --ipc=host \`
+`--device=/dev/davinci0 \`
+`--device=/dev/davinci1 \`
+`--device=/dev/davinci2 \`
+`--device=/dev/davinci3 \`
+`--device=/dev/davinci_manager \`
+`--device=/dev/devmm_svm \`
+`--device=/dev/hisi_hdc \`
+`-v /usr/local/Ascend/driver:/usr/local/Ascend/driver \`
+`-v /usr/local/Ascend/add-ons/:/usr/local/Ascend/add-ons/ \`
+`-v /var/log/npu/conf/slog/slog.conf:/var/log/npu/conf/slog/slog.conf \`
+`-v /var/log/npu/slog/:/var/log/npu/slog \`
+`-v /var/log/npu/profiling/:/var/log/npu/profiling \`
+`-v /var/log/npu/dump/:/var/log/npu/dump \`
+`-v /var/log/npu/:/usr/slog \`
+`-v /usr/local/sbin/npu-smi:/usr/local/sbin/npu-smi \`
+`-v /etc/ascend_install.info:/etc/ascend_install.info \`
+`-v /path/to/transformers-cifar10:/root/transformers-cifar10 \`
+`ascendhub.huawei.com/public-ascendhub/pytorch-modelzoo:22.0.RC3-1.8.1 \`
+`/bin/bash`
 
 安装python3依赖：
 `pip install torchvision==0.9.1 einops odach`
