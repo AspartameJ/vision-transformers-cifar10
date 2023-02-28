@@ -1,3 +1,54 @@
+# vision-transformers-cifar10在Ascend910上训练
+环境要求：
+Ascend910b+x86环境+Ascend910b驱动固件
+
+docker镜像：
+[ascendhub.huawei.com/public-ascendhub/pytorch-modelzoo:22.0.RC3-1.8.1](https://ascendhub.huawei.com/public-ascendhub/pytorch-modelzoo:22.0.RC3-1.8.1#/detail/pytorch-modelzoo)
+
+代码下载：
+`cd /path/to/transformers-cifar10`
+`git clone https://github.com/AspartameJ/vision-transformers-cifar10.git`
+
+数据集下载：
+`cd vision-transformers-cifar10`
+mkdir data && cd data
+`wget http://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz && tar xvf cifar-10-python.tar.gz && rm -rf cifar-10-python.tar.gz`
+
+容器启动命令参考：
+`docker run -it -u root --name torch-0123 --ipc=host \
+--device=/dev/davinci0 \
+--device=/dev/davinci1 \
+--device=/dev/davinci2 \
+--device=/dev/davinci3 \
+--device=/dev/davinci_manager \
+--device=/dev/devmm_svm \
+--device=/dev/hisi_hdc \
+-v /usr/local/Ascend/driver:/usr/local/Ascend/driver \
+-v /usr/local/Ascend/add-ons/:/usr/local/Ascend/add-ons/ \
+-v /var/log/npu/conf/slog/slog.conf:/var/log/npu/conf/slog/slog.conf \
+-v /var/log/npu/slog/:/var/log/npu/slog \
+-v /var/log/npu/profiling/:/var/log/npu/profiling \
+-v /var/log/npu/dump/:/var/log/npu/dump \
+-v /var/log/npu/:/usr/slog \
+-v /usr/local/sbin/npu-smi:/usr/local/sbin/npu-smi \
+-v /etc/ascend_install.info:/etc/ascend_install.info \
+-v /path/to/transformers-cifar10:/root/transformers-cifar10 \
+ascendhub.huawei.com/public-ascendhub/pytorch-modelzoo:22.0.RC3-1.8.1 \
+/bin/bash`
+
+安装python3依赖：
+`pip install torchvision==0.9.1 einops odach`
+
+启动训练：
+单卡训练：`bash train_cifar10_npu_1p.sh`或者`python3 train_cifar10_npu.py --net swin --n_epochs 400`
+2卡训练：`bash train_cifar10_npu_distribute_2p.sh`
+4卡训练：`bash train_cifar10_npu_distribute_4p.sh`
+
+查看训练日志：
+`tail -f output/0/train_0.log'
+查看npu资源使用情况
+`watch npu-smi info`
+
 # vision-transformers-cifar10
 Let's train vision transformers for cifar 10! 
 
