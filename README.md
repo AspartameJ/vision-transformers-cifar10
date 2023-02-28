@@ -26,7 +26,7 @@ docker镜像：
 4卡训练：`bash train_cifar10_npu_distribute_4p.sh`
 
 查看训练日志：
-`tail -f output/0/train_0.log'
+`tail -f output/0/train_0.log`
 查看npu资源使用情况
 `watch npu-smi info`
 
