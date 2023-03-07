@@ -277,8 +277,7 @@ elif args.net=="swin":
 
 loc = 'npu:{}'.format(args.device_id)
 torch.npu.set_device(loc)
-net = net.to(loc)   
-torch.npu.set_device(loc)
+net = net.to(loc)
 
 # 20230222
 # For Multi-GPU
